@@ -10,7 +10,8 @@
 2. コミットして main に入れ、タグを付けて push する: `git tag v1.1.1 && git push origin v1.1.1`
 3. タグの push で `.github/workflows/release.yml` が動き、Windows (windows.yml)・Mac (mac.yml)・Linux (linux.yml)・端末版 (tui.yml) の配布物を作って、全部できたらリリースに付ける。どれかが失敗したら、どの配布物も付けず、下の Homebrew・apt・dnf にも出さない
    - Windows: `Meltype-<版>-setup.exe` (インストーラー。自動更新もこれを使う)、`Meltype-<版>-windows-portable.zip`、`Meltype-<版>-windows.zip` (1.6.0 以前の Meltype の自動更新用。中身はインストーラーと、それを実行する `install.ps1`)
-   - Mac: `Meltype-<版>-mac.zip`、Linux: `Meltype-<版>-linux.zip` と `meltype_<版>_amd64.deb`、ARM64 の `Meltype-<版>-linux-arm64.zip` と `meltype_<版>_arm64.deb`、Fedora・RHEL 9 系向けの `meltype-<版>-1.x86_64.rpm` と `meltype-<版>-1.aarch64.rpm`、fcitx5 のアドオンの `meltype-fcitx5-<版>-1.x86_64.rpm` と `meltype-fcitx5-<版>-1.aarch64.rpm` (どれもプレビュー版。.deb と .rpm の版は `1.2.2-pre.2` なら `1.2.2~pre.2`)
+   - Mac: `Meltype-<版>-mac.dmg` と Homebrew 用の `Meltype-<版>-mac.zip` (プレビュー版)
+   - Linux: `Meltype-<版>-linux.zip` と `meltype_<版>_amd64.deb`、ARM64 の `Meltype-<版>-linux-arm64.zip` と `meltype_<版>_arm64.deb`、Fedora・RHEL 9 系向けの `meltype-<版>-1.x86_64.rpm` と `meltype-<版>-1.aarch64.rpm`、fcitx5 のアドオンの `meltype-fcitx5-<版>-1.x86_64.rpm` と `meltype-fcitx5-<版>-1.aarch64.rpm` (どれもプレビュー版。.deb と .rpm の版は `1.2.2-pre.2` なら `1.2.2~pre.2`)
    - 端末版: `Meltype-<版>-tty-linux.zip`、ARM64 の `Meltype-<版>-tty-linux-arm64.zip`
    - リリースに付けたあと、Homebrew Cask の更新 PR を作ります。PR を main に入れると、このリポジトリの `Casks/meltype.rb` が更新されます
    - リリースに付けたあと、apt・dnf のリポジトリを GitHub Pages に公開します (下の「パッケージマネージャー」の署名鍵があるときだけ)
@@ -18,6 +19,12 @@
 5. 使っている人の Meltype (Windows) は、自動で新しい版に更新されます (`Meltype-<版>-setup.exe` をダウンロードし、次のサインインのときに実行する)
 
 Windows の [Code signing policy](CODE-SIGNING.md) と [SignPath テスト署名の設定手順](SIGNPATH-SETUP.md)。テスト署名は独立した手動ワークフローで、現在の配布手順は変更しません。
+
+## Mac の試作をフォークから配布する
+
+Mac で DMG を作る手順は [mac/README.md](../../mac/README.md#配布ファイルを作る) を参照してください。フォークの Actions で `mac` を対象ブランチから手動実行した場合は、成果物 `meltype-mac` にも DMG が入ります。
+
+フォークの Releases で対象ブランチのプレリリースを作り、DMG を添付します。タグ `v*` は全 OS の配布を起動するので、Mac の試作には `mac-dmg-preview.1` のようなタグを使います。配布用に署名する場合は、`mac.yml` の署名・公証用のシークレットをフォークにも設定します。
 
 ### bot でリリースする
 

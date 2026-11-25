@@ -433,7 +433,7 @@ function initScrollSpy() {
 }
 
 // Linux はディストリビューションごとに入れ方が違うので、パッケージは直接落とさずに docs/LINUX.md の手順へ案内する。
-const OS_ASSET = { windows: "setup.exe", mac: "mac.zip" };
+const OS_ASSET = { windows: "setup.exe", mac: "mac.dmg" };
 const OS_LABEL = { windows: "Windows 版をダウンロード", mac: "Mac 版 (プレビュー) をダウンロード", linux: "Linux 版 (プレビュー) の入れ方" };
 
 function inline(text) {
@@ -509,7 +509,13 @@ function markdown(text) {
 }
 
 function assetFor(release, suffix) {
-  return release && release.assets.find((asset) => asset.name.endsWith(suffix));
+  if (!release) return undefined;
+  const asset = release.assets.find((entry) => entry.name.endsWith(suffix));
+  // DMG を付ける前のリリースにも、Mac のダウンロード先を用意する。
+  if (!asset && suffix === "mac.dmg") {
+    return release.assets.find((entry) => entry.name.endsWith("mac.zip"));
+  }
+  return asset;
 }
 
 function renderReleases(data) {

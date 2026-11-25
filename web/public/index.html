@@ -389,13 +389,13 @@
         <div class="os-panel" role="tabpanel" id="panel-mac" aria-labelledby="tab-mac" hidden>
           <p class="panel-lead">macOS 標準の IME の仕組み (Input Method Kit) で動く入力ソースです。漢字変換には同梱の Mozc を使います。<code>Meltype.app</code> をダブルクリックしても何も起きません。</p>
           <ol class="steps">
-            <li><b>ダウンロード</b><span><a href="https://github.com/yksr-melt/Meltype/releases/latest" data-asset-link="mac.zip"><code>Meltype-&lt;version&gt;-mac.zip</code></a> をダウンロードして、zip 全体を展開します</span></li>
-            <li><b>インストーラーを開く</b><span>「Install Meltype.command」をダブルクリックします</span></li>
-            <li><b>準備完了</b><span>インストーラーが Meltype を登録・起動し、入力ソースを切り替えます</span></li>
+            <li><b>ダウンロード</b><span><a href="https://github.com/yksr-melt/Meltype/releases/latest" data-asset-link="mac.dmg"><code>Meltype-&lt;version&gt;-mac.dmg</code></a> を開きます</span></li>
+            <li><b>インストール</b><span>DMG の中の「Meltype をインストール」を開きます。ZIP の場合は全体を展開し、「Install Meltype.command」を開きます</span></li>
+            <li><b>入力ソースを選ぶ</b><span>DMG の完了画面では「Meltype を使う」を押します。入力メニューからも選べます</span></li>
           </ol>
           <div class="callouts">
             <p class="callout is-warn"><svg class="ic"><use href="/assets/img/icons.svg#i-alert"/></svg><span>「開発元が未確認のため開けません」と出たら、右クリック (control + クリック) →「開く」。macOS 15 以降は、システム設定 → プライバシーとセキュリティ の「このまま開く」を押してください。</span></p>
-            <p class="callout is-info"><svg class="ic"><use href="/assets/img/icons.svg#i-info"/></svg><span>配布している zip は Apple シリコンの Mac 用です。Intel の Mac ではソースからビルドしてください。</span></p>
+            <p class="callout is-info"><svg class="ic"><use href="/assets/img/icons.svg#i-info"/></svg><span>配布ファイルは Apple シリコンの Mac 用です。Intel の Mac ではソースからビルドしてください。</span></p>
           </div>
           <details class="fold">
             <summary>Homebrew で入れる</summary>
